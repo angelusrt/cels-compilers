@@ -1,0 +1,8 @@
+{
+	"name": "cels-compilers",
+	"author": "angelus",
+	"entry": "cels-compilers.c",
+	"compiler": "gcc",
+	"build": "gcc -Wall -Wextra -Wpedantic -g -rdynamic cels-compilers.c -o cels-compilers.o -Dcels_debug=true",
+	"prod": "gcc -Wall -Wextra -Wpedantic cels-compilers.c -o cels-compilers.o -Dcels_debug=false"
+}
