@@ -1,6 +1,6 @@
 */archive/*
-*/*.o
+*.o
 */*.s
 */.*.json
-*/packages/*
+packages/*
 */_*
