@@ -1,6 +1,8 @@
 #ifndef cels_compilers_h
 #define cels_compilers_h
 
+#include "lexers.h"
+
 #include "../packages/cels/nodes.h"
 #include "../packages/cels/strings.h"
 #include "../packages/cels/types.h"
@@ -26,13 +28,17 @@ typedef struct syntax_entity {
 	string statement;
 } syntax_entity;
 
+typedef errors(syntax_entity) esyntax_entity;
+
 typedef struct syntax_node syntax_node;
 typedef munodes(syntax_node, syntax_entity) syntax_node;
 typedef mutrees(syntax_node) syntax_tree;
 typedef mutree_iterators(syntax_node) syntax_tree_iterator;
 typedef errors(syntax_tree) esyntax_tree;
+typedef errors(syntax_node) esyntax_node;
 
 cels_warn_unused
-esyntax_tree cels_compilers_parse_source(const string source);
+esyntax_tree cels_compilers_parse_source(
+	const string source, const allocator *mem);
 
 #endif

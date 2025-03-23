@@ -8,28 +8,22 @@
 #include "modules/compilers.h"
 #include "modules/compilers.c"
 
+#include "modules/lexers.h"
+#include "modules/lexers.c"
 
-const string source = strings_premake(
+const string source0 = strings_premake(
 	"/**thats a function documentation*/\n"
-	"int main(void) {\n"
-	"\tconst allocator mem = arenas_init(1024);\n"
-	"\tstring_vec words = {0};\n"
-	"\tvectors_init(&words, sizeof(string), vector_min, &mem);\n\n"
-	"\tstring hello = strings_make(\"hello\", &mem);\n"
-	"\tvectors_push(&words, &hello, &mem);\n"
-	"\tstring world = strings_make(\"world\", &mem);\n"
-	"\tvectors_push(&words, &world, &mem);\n\n"
-	"\tconst string sep = strings_premake(\", \");\n"
-	"\tstring hello_world = string_vecs_join(&words, sep, &mem);\n\n"
-	"\tstrings_println(&hello_world); // hello, world\n\n"
-	"\tmems_free(&mem, null);\n"
+	"int main(void) { \n"
+	"\tint a = 1024;\n"
 	"\treturn 0;\n"
 	"}"
 );
 
 
 int main(void) {
-	esyntax_tree tree = cels_compilers_parse_source(source);
+	const allocator mem = arenas_init(1024);
+
+	esyntax_tree tree = cels_compilers_parse_source(source0, &mem);
 	if (tree.error != syntax_successfull) {
 		printf("parsing gave error '%d'\n", tree.error);
 		exit(1);
